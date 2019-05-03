@@ -34,9 +34,9 @@ public class TestMethodInsert {
 	 * 	c6. nChildren<capacity
 	 * 	c7. children[position] == null
 	 * 	c8. elem.compareTo(children[position-1].max())>0
-	 *  c9. elem.compareTo(children[position].max())>0
-	 *  c10. nChildren==capacity
-	 *  c11. elem.compareTo(children[position].max())<0
+	 * 	c9. elem.compareTo(children[position].max())>0
+	 * 	c10. nChildren==capacity
+	 * 	c11. elem.compareTo(children[position].max())<0
 	 * 	c12. position==capacity
 	 * 
 	 */
