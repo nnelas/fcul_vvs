@@ -11,11 +11,24 @@ import java.util.List;
 public class TestNTreeDelete {
 
 	/*
+	 * Testes para o primeiro if:
+	 * VV verificar se esta vazio e o elemento nao existe na tree
+	 * VF verificar se esta vazio e o elemento existe
+	 * FV Verificar se não esta vazio e o elemento não existe
+	 * FF Verficar se nao esta vazio e o elemento existe
+	 * 
+	 * O VF e impossivel testar pois se a tree esta vazia o elemento nao pode existir
+	 * 
+	 */
+	
+	/*
 	 * to coverage:
 	 *     line 1, 2
 	 *     branch 1
 	 */
-	
+	/*
+	 * Verifica se esta vazio
+	 */
 	@Test
 	public void testWithEmptyTree() {
 		Integer elem = 0;
@@ -25,6 +38,22 @@ public class TestNTreeDelete {
 		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0);
 		assertEquals(mArrayNTree.info(), hArrayNTree.info());
 	}
+	
+	
+	/*
+	 * verifica se o elemento nao existe na tree
+	 */
+	@Test
+	public void testWithNonPresenteElemTree() {
+		Integer elem = 0;
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(3,0);
+		mArrayNTree.delete(elem);
+		
+		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(3,0);
+		assertEquals(mArrayNTree.info(), hArrayNTree.info());
+	}
+	
+	
 	
 	/*
 	 * to coverage:
