@@ -21,7 +21,7 @@ public class TestNTreeToList {
 		List<Integer> list = Arrays.asList(39, 59, 17, 85, 41, 45);
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 4);
 		List<Integer> temp = mArrayNTree.toList();
-
+		//TODO: falta fazer algum assert
 	}
 
 }
