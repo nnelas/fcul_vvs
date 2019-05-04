@@ -56,20 +56,24 @@ public class TestNTreeDelete {
 	
 	
 	/*
+	 * 
+	 * Este metodo nao e necessario para testar a line and branch cover
+	 *  
+	 */
+	/*
 	 * to coverage:
 	 *     line 1, 3, 4, 5
 	 *     branch 2, 3, 4
 	 */
-
-	@Test
-	public void testWithLeafNode() {
-		Integer elem = 0;
-		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<Integer>(0, 0);
-		mArrayNTree.delete(elem);
-		
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
-	}
+//	@Test
+//	public void testWithLeafNode() {
+//		Integer elem = 0;
+//		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<Integer>(0, 0);
+//		mArrayNTree.delete(elem);
+//		
+//		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
+//		assertTrue(mArrayNTree.equals(hArrayNTree));
+//	}
 	
 	@Test
 	public void testWithLeafNodeNotEmpty() {

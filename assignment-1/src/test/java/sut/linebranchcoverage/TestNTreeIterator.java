@@ -14,7 +14,8 @@ import sut.ArrayNTree;
 
 
 /*
- * Este iterator quando a colecao e vazia este tem um elemento que e null ou o ultimo numero que teve antes de ser apagado
+ * testIteratorHasNextOnEmpty e testIteratorNextOnEmpty deram valores errados
+ * corrigir o do stor
  */
 public class TestNTreeIterator {
 	
@@ -29,7 +30,6 @@ public class TestNTreeIterator {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(4);
 		
 		Iterator<Integer> iterator = mArrayNTree.iterator();
-		iterator.next();
 		assertEquals(false, iterator.hasNext());
 	}
 	
@@ -41,7 +41,6 @@ public class TestNTreeIterator {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(4);
 		
 		Iterator<Integer> iterator = mArrayNTree.iterator();
-		iterator.next();
 	    assertThrows(NoSuchElementException.class, () -> {
 	        iterator.next();
 	    });

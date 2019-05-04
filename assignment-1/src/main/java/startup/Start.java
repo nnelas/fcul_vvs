@@ -21,6 +21,14 @@ public class Start {
 			System.out.println(integer);
 		}
 		
+		///////// outro teste /////////////
+		ArrayNTree<Integer> tree2 = new ArrayNTree<>(4);
+		System.out.println(tree2.info());
+		
+		for (Integer integer : tree2) {
+			System.out.println(integer);
+		}
+		
 //		System.out.println(tree.info());  
 //		// output eg: [17:[39][41:[45]][59][85]], size: 6, height: 3, nLeaves: 4
 //		

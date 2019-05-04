@@ -142,7 +142,6 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-	//TestNTreeInsert TODO
 	public void insert(T elem) {
 		
 		if(isEmpty()) {
@@ -201,7 +200,8 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 				// otherwise, it must go under the proposed child's position
 				children[position].insert(elem);
 		}
-	}
+	} 
+	
 
     /////////////////////////////////////
 	//TestNTreeDelete
@@ -385,7 +385,9 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		 */
 		public PrefixIterator(ArrayNTree<T> tree) {
 			stack = new LinkedList<>();
-			stack.push(tree);
+			if(!tree.isEmpty()) {
+				stack.push(tree);
+			}
 		}
 	
 		/**
