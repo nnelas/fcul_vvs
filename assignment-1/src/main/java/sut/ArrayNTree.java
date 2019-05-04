@@ -52,18 +52,20 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		
 	/////////////////////////////////////
 
+	//TestNTreeIsEmpty
 	public boolean isEmpty() {
 		return empty;
 	}
 
     /////////////////////////////////////
 
+	//TestNTreeIsLeaf
 	public boolean isLeaf() {
 		return !empty && nChildren == 0;
 	}
 
     /////////////////////////////////////
-
+	//TestNTreeSize
 	public int size() {
 		int sum=0;
 		for(NTree<T> brt : children)
@@ -73,7 +75,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-
+	//TestNTreeCountLeaves
 	public int countLeaves() {
 		if (isLeaf())
 			return 1;
@@ -86,7 +88,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-
+	//TestNTreeHeight
 	public int height() {
 		if (isEmpty())
 			return 0;
@@ -103,13 +105,13 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-	
+	//TestNTreeMin
 	public T min() {
 		return data;
 	}
 	
     /////////////////////////////////////
-	
+	//TestNTreeMax
 	public T max() {
 		if (isLeaf())
 			return data;
@@ -118,7 +120,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-
+	//TestNTreeContains
 	public boolean contains(T elem) {
 		if (isEmpty())
 			return false;
@@ -140,7 +142,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-
+	//TestNTreeInsert TODO
 	public void insert(T elem) {
 		
 		if(isEmpty()) {
@@ -154,7 +156,9 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		
 		// if elem<data, elem should be at root, and we re-insert data
 		if (data.compareTo(elem)>0) {
-			T tmp = data; data = elem; elem = tmp; // swap values
+			T tmp = data; 
+			data = elem; 
+			elem = tmp; // swap values
 		}
 		
 		if(isLeaf()) {
@@ -200,7 +204,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 
     /////////////////////////////////////
-	
+	//TestNTreeDelete
 	public void delete(T elem) {
 		
 		// the minimum value is at the root, if something smaller
@@ -287,6 +291,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	 * Is this tree equal to another object?
 	 * Two NTrees are equal iff they have the same values
 	 */
+	//TestNTreeEquals
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object other) {
 		return this == other ||
@@ -316,7 +321,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	}
 	
 	/////////////////////////////////////
-	
+	//TestNTreeToList
 	public List<T> toList() {
 		List<T> list = new LinkedList<>();
 		for(T elem : this)
@@ -329,6 +334,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 	/**
 	 * @returns a new tree with the same elements of this
 	 */
+	//TestNTreeClone
 	public ArrayNTree<T> clone() {
 		List<T> list = toList();
 		Collections.shuffle(list); // probably produces a more balanced tree	
@@ -337,6 +343,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 
 	/////////////////////////////////////
 
+	//TestNTreeToString
 	public String toString() {
 		if (isEmpty())
 			return "[]";

@@ -29,6 +29,7 @@ public class TestNTreeIterator {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(4);
 		
 		Iterator<Integer> iterator = mArrayNTree.iterator();
+		iterator.next();
 		assertEquals(false, iterator.hasNext());
 	}
 	
@@ -40,7 +41,7 @@ public class TestNTreeIterator {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(4);
 		
 		Iterator<Integer> iterator = mArrayNTree.iterator();
-		
+		iterator.next();
 	    assertThrows(NoSuchElementException.class, () -> {
 	        iterator.next();
 	    });
