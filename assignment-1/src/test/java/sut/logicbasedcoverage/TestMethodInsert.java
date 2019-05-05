@@ -2,6 +2,9 @@ package sut.logicbasedcoverage;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import sut.ArrayNTree;
@@ -71,36 +74,63 @@ public class TestMethodInsert {
 	 * 
 	 */
 
-	/*
-	 * to coverage
-	 * 		p1
-	 * 		c1
-	 */
-	
 	@Test
-	public void testPOne() {
+	public void testP1() {
 		Integer elem = 0;
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0);
-		mArrayNTree.insert(0);
+		mArrayNTree.insert(elem);
 
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0]"));
 	}
 	
-	/*
-	 * to coverage
-	 * 		!p1, p2
-	 * 		!c1, p2
-	 */
-	
 	@Test
-	public void testPTwo() {
+	public void testP2() {
 		Integer elem = 0;
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0, 0);
 		mArrayNTree.insert(elem);
 
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0]"));
+	}
+	
+	@Test
+	public void testP3nP4() {
+		Integer elem = 0;
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(1, 1);
+		mArrayNTree.insert(elem);
+
+		assertTrue(mArrayNTree.toString().equals("[0:[1]]"));
+	}
+
+	@Test
+	public void testP5nP9nP10() {
+		Integer elem = 0;
+
+		List<Integer> list = Arrays.asList(1, 2);
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 1);
+		mArrayNTree.insert(elem);
+		
+		assertTrue(mArrayNTree.toString().equals("[0:[1:[2]]]"));
+
+	}
+	
+	@Test
+	public void testP6nP7nP9() {
+		Integer elem = 3;
+
+		List<Integer> list = Arrays.asList(0, 1, 4);
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 2);
+		mArrayNTree.insert(elem);
+		assertTrue(mArrayNTree.toString().equals("[0:[1:[3]][4]]"));
+	}
+	
+	@Test
+	public void testP8() {
+		Integer elem = 2;
+
+		List<Integer> list = Arrays.asList(0, 1, 3);
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 3);
+		mArrayNTree.insert(elem);
+		assertTrue(mArrayNTree.toString().equals("[0:[1][2][3]]"));
 	}
 
 }
