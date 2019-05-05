@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import sut.ArrayNTree;
 
-public class TestNTreeToString {
+public class TestNTreeInfo {
 
 	/*
 	 * to coverage: 
@@ -17,9 +17,9 @@ public class TestNTreeToString {
 	 */
 
 	@Test
-	public void testToStringTree() {
+	public void testInfo() {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<Integer>(Arrays.asList(2, 0, 4), 2);
-		
-		assertTrue(mArrayNTree.toString().equals("[0:[2][4]]"));
+
+		assertTrue(mArrayNTree.info().equals("[0:[2][4]], size: 3, height: 2, nLeaves: 2"));
 	}
 }

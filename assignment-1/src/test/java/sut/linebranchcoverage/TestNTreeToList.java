@@ -6,6 +6,7 @@ import org.junit.Test;
 import sut.ArrayNTree;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TestNTreeToList {
@@ -20,8 +21,10 @@ public class TestNTreeToList {
 	public void testWithElementsInsideList() {
 		List<Integer> list = Arrays.asList(39, 59, 17, 85, 41, 45);
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 4);
-		List<Integer> temp = mArrayNTree.toList();
-		//TODO: falta fazer algum assert
+	
+		Collections.sort(list); //ordenar a lista que esperamos que esteja
+		assertTrue(list.equals(mArrayNTree.toList()));
+
 	}
 
 }

@@ -50,7 +50,7 @@ public class TestNTreeDelete {
 		mArrayNTree.delete(elem);
 		
 		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(3,0);
-		assertEquals(mArrayNTree.info(), hArrayNTree.info());
+		assertEquals(mArrayNTree.toString(), hArrayNTree.toString());
 	}
 	
 	
@@ -81,10 +81,8 @@ public class TestNTreeDelete {
 		List<Integer> list = Arrays.asList(39, 59, 17, 85, 41, 45);
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<Integer>(list, 1);		
 		mArrayNTree.delete(elem);
-
-		list = Arrays.asList(39, 59, 17, 85, 45);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<Integer>(list, 1);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		
+		assertTrue(mArrayNTree.toString().equals("[17:[39:[45:[59:[85]]]]]"));
 	}
 
 	@Test
@@ -94,9 +92,7 @@ public class TestNTreeDelete {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 4);
 		mArrayNTree.delete(elem);
 
-		list = Arrays.asList(39, 59, 17, 85, 41, 45);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(list, 4);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[17:[39][41:[45]][59][85]]"));
 	}
 
 	@Test
@@ -106,9 +102,7 @@ public class TestNTreeDelete {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 4);
 		mArrayNTree.delete(elem);
 
-		list = Arrays.asList(39, 59, 17, 85, 41, 45);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(list, 4);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[17:[39][41:[45]][59][85]]"));
 	}
 
 }

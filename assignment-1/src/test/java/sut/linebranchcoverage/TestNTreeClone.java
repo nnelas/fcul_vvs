@@ -18,9 +18,10 @@ public class TestNTreeClone {
 
 	@Test
 	public void testCloneTree() {
-		List<Integer> list = Arrays.asList(39);  
-		ArrayNTree<Integer> tree = new ArrayNTree<>(list,4);
+		ArrayNTree<Integer> tree = new ArrayNTree<>(39,4);
 		ArrayNTree<Integer> clone = tree.clone();
+		assertTrue(tree!=clone);
 		assertTrue(tree.equals(clone));
+		assertTrue(tree.toString().equals(clone.toString()));
 	}
 }

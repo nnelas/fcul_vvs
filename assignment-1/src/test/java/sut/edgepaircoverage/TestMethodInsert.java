@@ -73,10 +73,9 @@ public class TestMethodInsert {
 	public void testA() {
 		Integer elem = 0;
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0);
-		mArrayNTree.insert(0);
+		mArrayNTree.insert(elem);
 
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0]"));
 	}
 
 	@Test
@@ -85,8 +84,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0, 0);
 		mArrayNTree.insert(elem);
 
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(0, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0]"));
 	}
 
 	@Test
@@ -95,9 +93,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0, 1);
 		mArrayNTree.insert(elem);
 
-		List<Integer> list = Arrays.asList(0, 1);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(list, 1);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0:[1]]"));
 	}
 
 	@Test
@@ -106,9 +102,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(1, 1);
 		mArrayNTree.insert(elem);
 
-		List<Integer> list = Arrays.asList(0, 1);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(list, 1);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0:[1]]"));
 	}
 
 	@Test
@@ -162,9 +156,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 3);
 		mArrayNTree.insert(elem);
 
-		List<Integer> hold = Arrays.asList(1, 3, 4);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(hold, 3);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[1:[3][4]]"));
 
 	}
 
@@ -186,9 +178,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 3);
 		mArrayNTree.insert(elem);
 
-		List<Integer> hold = Arrays.asList(1, 3, 4, 5);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(hold, 3);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[1:[3][4][5]]"));
 
 	}
 

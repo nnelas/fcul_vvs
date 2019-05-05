@@ -18,7 +18,7 @@ public class TestNTreeIsLeaf {
 
 	@Test
 	public void testWithEmptyTree() {
-		ArrayNTree<?> mArrayNTree = new ArrayNTree<>(0);
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0);
 		assertFalse(mArrayNTree.isLeaf());
 	}
 	
@@ -32,6 +32,12 @@ public class TestNTreeIsLeaf {
 		List<Integer> list = Arrays.asList(39, 59, 17, 85);
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<Integer>(list, 1);
 		assertFalse(mArrayNTree.isLeaf());
+	}
+	
+	@Test
+	public void testWithOneElem() {
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(1,0);
+		assertTrue(mArrayNTree.isLeaf());
 	}
 
 }

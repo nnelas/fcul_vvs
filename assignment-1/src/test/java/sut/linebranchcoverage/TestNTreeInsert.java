@@ -25,8 +25,7 @@ public class TestNTreeInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0);
 		mArrayNTree.insert(elem);
 
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(elem, 0);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[0]"));
 	}
 	
 	/*
@@ -133,7 +132,7 @@ public class TestNTreeInsert {
 		List<Integer> lista = Arrays.asList(7,8,9,10);
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(lista, 3);
 		mArrayNTree.insert(elem);
-		System.out.println(mArrayNTree);
+		
 		assertTrue(mArrayNTree.toString().equals("[6:[7:[8]][9][10]]"));
 	}
 	

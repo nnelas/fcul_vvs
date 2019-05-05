@@ -50,7 +50,7 @@ public class TestMethodInsert {
 	 * 
 	 */
 
-	// @Test
+	@Test
 	public void testE() {
 		// [1,3,5,7,8,10,1,3,5,7,9]
 
@@ -59,9 +59,8 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 3);
 		mArrayNTree.insert(elem);
 
-		List<Integer> hold = Arrays.asList(1, 2, 3, 5);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(hold, 3);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+
+		assertTrue(mArrayNTree.toString().equals("[1:[2][3][5]]"));
 	}
 
 	// @Test
@@ -82,9 +81,7 @@ public class TestMethodInsert {
 		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(list, 3);
 		mArrayNTree.insert(elem);
 
-		List<Integer> hold = Arrays.asList(1, 2, 3, 5);
-		ArrayNTree<Integer> hArrayNTree = new ArrayNTree<>(hold, 3);
-		assertTrue(mArrayNTree.equals(hArrayNTree));
+		assertTrue(mArrayNTree.toString().equals("[1:[2][3][5]]"));
 	}
 
 	// @Test
@@ -160,6 +157,7 @@ public class TestMethodInsert {
 		// esse elemento e o maior de todos os childrens
 
 		fail("Not yet implemented");
+		//TODO
 		
 	}
 
@@ -167,6 +165,7 @@ public class TestMethodInsert {
 	public void testW() {
 		// [1,3,5,7,8,11,12,15,1,3,5,7,8,11,13,16]
 		fail("Not yet implemented");
+		//TODO
 	}
 
 	// @Test

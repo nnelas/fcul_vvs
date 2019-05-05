@@ -15,7 +15,13 @@ public class TestNTreeIsEmpty {
 
 	@Test
 	public void testWithEmptyTree() {
-		ArrayNTree mArrayNTree = new ArrayNTree(0);
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(0);
 		assertTrue(mArrayNTree.isEmpty());
+	}
+	
+	@Test
+	public void testWithNoNEmptyTree() {
+		ArrayNTree<Integer> mArrayNTree = new ArrayNTree<>(1,0);
+		assertTrue(!mArrayNTree.isEmpty());
 	}
 }
