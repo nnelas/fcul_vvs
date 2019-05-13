@@ -21,7 +21,25 @@ Use JUnit QuickCheck to create an n-tree random generator. Test the fol- lowing 
 4. Given a n-tree, inserting all its elements again will produce no effect
 5. Given a n-tree, inserting an element already there several times over will produce no effect
 
-## Notes
+### Notes
 
 - All of these tests were written to be used with JUnit 4
 - Both Eclipse and Intellij compatible 
+
+## assignment-2
+
+1. Use HtmlUnit to perform and test the following narratives in the webapp running on Wildfly:
+(a) insert a new address for an existing customer, then the table of ad- dresses of that client includes that address and its total row size increases by one;
+(b) get the first customer listed in the List All Customers use case, then try to insert it again and check if the expected error appears;
+(c) create a new customer, them remove him, and check if the list of all clients does not change;
+(d) create a new sale for an existing customer, insert a delivery for that sale and then show the sale delivery. Check that all intermediate pages have the expected information.
+
+2. Use DbSetup to populate the database with sample data. These data should be organized to test the following tasks:
+(a) after the update of a costumer contact, that information should be properly saved;
+(b) after deleting all but one costumer, the list of all customers should have only that remaining customer;
+(c) after deleting a certain costumer, its deliveries should be removed from the database;
+(d) after deleting a certain costumer, it’s possible to add it back without lifting exceptions;
+(e) adding a new delivery increases the total number of all deliveries by one;
+Add two extra tests concerning the expected behaviour of sales.
+
+3. Is it possible to mock some SUT business layer’s modules (in this case, services) in order to remove dependencies and test these modules separa- tely? If yes, pick two modules A and B with dependency A → B, mock A and test B using Mockito. If not, explain why you cannot use Mockito as it is, and propose what kind of refactoring would the SUT’s business layer need, in order to perform these mocking tests (show an example to explain your methodology).
