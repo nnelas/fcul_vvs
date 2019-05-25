@@ -10,6 +10,7 @@ package utils;
 public class VatValidos {
 
 	public static void main(String[] args) {
+
 		for (int i = 100000000; i < 101000000; i++) {
 			if (isValidVAT(i)) {
 				System.out.println(i);
