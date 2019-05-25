@@ -58,12 +58,11 @@ public class TestIndex {
          assertTrue(inputs.size()==APPLICATION_NUMBER_USE_CASES);
 	}
 	
-	/**
-	 * Here we test two operations (insert & remove) in order to leave the database
-	 * in the original state
-	 * 
-	 * @throws IOException
+	/*
+	 * c ) create a new customer, 
+	 * them remove him, and check if the list of all clients does not change;
 	 */
+	
 	@Test
 	public void insertAndRemoveClientTest() throws IOException {
         final String NPC = "503183504";
