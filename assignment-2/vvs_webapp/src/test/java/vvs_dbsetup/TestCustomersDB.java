@@ -1,6 +1,8 @@
 package vvs_dbsetup;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -43,7 +45,6 @@ public class TestCustomersDB {
 		dbSetupTracker.launchIfNecessary(dbSetup);
 
 	}
-
 	@Test
 	public void queryCustomerNumberTest() throws ApplicationException {
 		// read-only test: unnecessary to re-launch setup after test has been run
@@ -55,6 +56,57 @@ public class TestCustomersDB {
 		assertEquals(expected, actual);
 	}
 
+	/* 
+	 * b) after deleting all but one costumer, 
+	 * the list of all customers should have only that remaining customer;
+	 */
+	@Test
+	public void deleteButOne() throws ApplicationException {
+		final int VAT = 197672337;
+
+		int initialCustomers = CustomerService.INSTANCE.getAllCustomers().customers.size();
+		
+		assertEquals(2, initialCustomers);
+		
+		List<Integer> vats = CustomerService.INSTANCE.getAllCustomers()
+				.customers.stream()
+				.filter(customer -> customer.vat != VAT)
+				.map(customer -> customer.vat)
+				.collect(Collectors.toList());
+		
+		for(Integer vat:vats)
+			CustomerService.INSTANCE.removeCustomer(vat);
+		
+		
+		assertEquals(VAT, CustomerService.INSTANCE.getCustomerByVat(VAT).vat);
+		assertEquals(1, CustomerService.INSTANCE.getAllCustomers().customers.size());
+	}
+
+	/* 
+	 * c) after deleting a certain customer, 
+	 * its deliveries should be removed from the database;
+	 */
+	@Test
+	public void deleteACustomerAndCheckDeliveries() throws ApplicationException {
+		final int VAT = 197672337;
+
+		SaleService.INSTANCE.addSale(VAT);
+		
+		SalesDTO sales = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
+		AddressesDTO addresses = CustomerService.INSTANCE.getAllAddresses(VAT);
+		SaleService.INSTANCE.addSaleDelivery(sales.sales.get(0).id, addresses.addrs.get(0).id);
+		int numOfDeliveries = SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size();
+		
+		//valido que existe uma entrega
+		assertEquals(1, numOfDeliveries);
+		
+		//removo o customer
+		CustomerService.INSTANCE.removeCustomer(VAT);
+
+		//valido que depois de removido já não existem entregas para esse customer
+		assertEquals(0, SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size());
+	}
+	
 	/* 
 	 * d) after deleting a certain costumer, it’s possible to add it back without
 	 * lifting exceptions;
