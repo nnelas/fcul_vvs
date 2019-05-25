@@ -1,5 +1,6 @@
 package vvs_htmlunit;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,6 +23,11 @@ import com.gargoylesoftware.htmlunit.util.NameValuePair;
 public class TestNewSaleAndDelivery {
 
     private static HtmlPage page;
+    
+    @BeforeClass
+	public static void setUpClass() throws Exception {
+		page = SetupClass.setupClass();
+	}
 
     /*
      * d) create a new sale for an existing customer,
