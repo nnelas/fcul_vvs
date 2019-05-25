@@ -94,6 +94,7 @@ public class TestIndex {
 		// check if report page includes the proper values
 		HtmlPage reportPage = submit.click();
 		String textReportPage = reportPage.asText();
+		System.out.println(textReportPage);
 		assertTrue(textReportPage.contains(NPC));
 		assertTrue(textReportPage.contains(DESIGNATION));
 		assertTrue(textReportPage.contains(PHONE));
@@ -156,9 +157,9 @@ public class TestIndex {
 		assertTrue(reportPage.asXml().contains("JOSE FARIA"));
 
 		// to check GET parameter's
-		List<NameValuePair> parameters = reportPage.getWebResponse().getWebRequest().getRequestParameters();
-		for (NameValuePair parameter : parameters) {
-			System.out.println(parameter.getName() + " = " + parameter.getValue());
-		}
+//		List<NameValuePair> parameters = reportPage.getWebResponse().getWebRequest().getRequestParameters();
+//		for (NameValuePair parameter : parameters) {
+//			System.out.println(parameter.getName() + " = " + parameter.getValue());
+//		}
 	}
 }
