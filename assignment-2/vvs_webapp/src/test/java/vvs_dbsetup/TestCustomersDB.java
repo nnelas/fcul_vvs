@@ -162,10 +162,10 @@ public class TestCustomersDB {
 		assertEquals("C", SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.get(0).statusId);
 	}
 	
-	// 2) test if it's possible to add a sale on a existing VAT 
+	// 2) test if it's possible to add a sale with an invalid VAT
 	@Test
 	public void addSaleExistingVAT() throws ApplicationException {
-		final int VAT = 197672337;
+		final int VAT = 217173535;
 		
 		SaleService.INSTANCE.addSale(VAT);
 		
