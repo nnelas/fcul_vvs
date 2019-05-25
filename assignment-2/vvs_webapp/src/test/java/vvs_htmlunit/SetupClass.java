@@ -1,4 +1,4 @@
-package vvs_HtmlUnit;
+package vvs_htmlunit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 class SetupClass {
 
-	private static final String APPLICATION_URL = "http://localhost:8080/VVS_webappdemo/";
+	static final String APPLICATION_URL = "http://localhost:8080/VVS_webappdemo/";
 	
 	protected static HtmlPage setupClass() throws Exception{
 		try (final WebClient webClient = new WebClient(BrowserVersion.getDefault())) {

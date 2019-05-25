@@ -1,4 +1,4 @@
-package vvs_HtmlUnit;
+package vvs_htmlunit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,7 +33,7 @@ import com.gargoylesoftware.htmlunit.util.NameValuePair;
  */
 // insert a new address for an existing customer, then the table of addresses of
 // that client includes that address and its total row size increases by one;
-public class AddressTest {
+public class TestNewAddress {
 
 	private static final String APPLICATION_URL = "http://localhost:8080/VVS_webappdemo/";
 	private static HtmlPage page;

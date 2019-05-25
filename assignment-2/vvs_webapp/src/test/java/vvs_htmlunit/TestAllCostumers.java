@@ -1,4 +1,4 @@
-package vvs_HtmlUnit;
+package vvs_htmlunit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,7 +25,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
  * depois tentar inserir-lo outra vez e verificar se o erro esperado aparece
  *
  */
-public class AllCustomersTeste {
+public class TestAllCostumers {
 
 	private static HtmlPage page;
 
