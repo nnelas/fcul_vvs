@@ -15,8 +15,16 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 
-// get the ﬁrst customer listed in the List All Customers use case, then try to
-// insert it again and check if the expected error appears
+/**
+ * get the ﬁrst customer listed in the List All Customers use case, then try to
+ * insert it again and check if the expected error appears
+ * 
+ * Teste 1b
+ * 
+ * Obter o primeiro customer da lista no caso de uso de ListAllCustomers, e
+ * depois tentar inserir-lo outra vez e verificar se o erro esperado aparece
+ *
+ */
 public class AllCustomersTeste {
 
 	private static HtmlPage page;
@@ -42,11 +50,6 @@ public class AllCustomersTeste {
 		final String phone = primeiraLinha.getCell(1).asText();
 		final String vat = primeiraLinha.getCell(2).asText();
 
-		System.out.println(name);
-		System.out.println(phone);
-		System.out.println(vat);
-		
-		
 		insertClient(name, phone, vat);
 
 	}

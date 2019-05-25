@@ -22,12 +22,13 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.NameValuePair;
 
 /**
+ * Teste 1a
+ * 
  * Class que adicionar um address a um cliente ja existente Verifica se foi
  * adicionado com sucesso no GetCustomerPageController Verifica se o cliente tem
  * um address a mais, isto e, se o numero total de address do cliente foi
  * aumentado em 1
  * 
- * @author Simao Ferreira
  *
  */
 // insert a new address for an existing customer, then the table of addresses of

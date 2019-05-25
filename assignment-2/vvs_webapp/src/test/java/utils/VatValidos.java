@@ -4,8 +4,6 @@ package utils;
  * Classe para encontrar vats validos nos primeiros 1000000 numeros a partir do
  * 100000000
  * 
- * @author Simao Ferreira
- *
  */
 public class VatValidos {
 
