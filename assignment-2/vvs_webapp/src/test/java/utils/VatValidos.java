@@ -1,7 +1,9 @@
 package utils;
 
 /**
- * Classe para encontrar os primeiros 1000000 vat validos 
+ * Classe para encontrar vats validos nos primeiros 1000000 numeros a partir do
+ * 100000000
+ * 
  * @author Simao Ferreira
  *
  */
