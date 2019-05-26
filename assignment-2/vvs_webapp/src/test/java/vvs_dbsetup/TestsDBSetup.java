@@ -127,11 +127,17 @@ public class TestsDBSetup {
 		final int VAT = 197672337;
 		final String NAME = "JOSE FARIA";
 		final int PHONE = 914276732;
-
+		
+		SaleService.INSTANCE.addSale(VAT);
+		SalesDTO salesOld = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
+		
 		CustomerService.INSTANCE.removeCustomer(VAT);
 		CustomerService.INSTANCE.addCustomer(VAT, NAME, PHONE);
-
+		
+		SalesDTO salesNew = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
+				
 		assertEquals(VAT, CustomerService.INSTANCE.getCustomerByVat(VAT).vat);
+		assertFalse(salesOld.sales.size() == salesNew.sales.size());
 	}
 
 	/*
@@ -173,14 +179,14 @@ public class TestsDBSetup {
 		assertEquals("C", SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.get(0).statusId);
 	}
 
-	// 2) test if it's possible to add a sale with an invalid VAT
+	// 2) test if it's possible to add a sale with a non existing VAT inside DB
 	@Test
 	public void addSaleExistingVAT() throws ApplicationException {
 		final int VAT = 217173535;
 
 		SaleService.INSTANCE.addSale(VAT);
 
-		assertEquals("O", SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.get(0).statusId);
+		assertFalse(SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.size() > 0);
 	}
 
 }
