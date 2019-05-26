@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.io.*;
 import java.util.*;
 
-public class TestIndex {
+public class TestsOfTests {
 
 	private static final String APPLICATION_URL = "http://localhost:8080/VVS_webappdemo/";
 	private static final int APPLICATION_NUMBER_USE_CASES = 11;
@@ -161,5 +161,26 @@ public class TestIndex {
 //		for (NameValuePair parameter : parameters) {
 //			System.out.println(parameter.getName() + " = " + parameter.getValue());
 //		}
+	}
+	
+	@Test
+	public void postCustomer() throws IOException {
+		HtmlPage reportPage;
+        String formData = String.format("vat=%s&designation=%s&phone=%s", "123456789", "ola", "123456789");
+                
+        WebRequest req =
+            new WebRequest(new java.net.URL(APPLICATION_URL+"AddCustomerPageController"),
+                           HttpMethod.POST);
+        req.setRequestBody(formData);
+        
+        try (final WebClient webClient = new WebClient(BrowserVersion.getDefault())) { 
+            reportPage = (HtmlPage) webClient.getPage(req);
+        }
+        
+        String textReportPage = reportPage.asText();
+        System.out.println("MEU TESTE!!!!!");
+        System.out.println(textReportPage);
+        assertTrue(textReportPage.contains("ola"));
+        assertTrue(textReportPage.contains("123456789"));
 	}
 }

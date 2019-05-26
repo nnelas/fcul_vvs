@@ -35,6 +35,13 @@ import com.gargoylesoftware.htmlunit.util.NameValuePair;
 // that client includes that address and its total row size increases by one;
 public class TestNewAddress {
 
+	private static final String TITLE_CUSTOMER_INFO = "Customer Info";
+
+	private static final String GET_CUSTOMER_PAGE_CONTROLLER = "GetCustomerPageController";
+
+	@Deprecated
+	private static final String ADD_ADDRESS_TO_CUSTOMER_HTML = "addAddressToCustomer.html";
+
 	private static final String APPLICATION_URL = "http://localhost:8080/VVS_webappdemo/";
 	private static HtmlPage page;
 
@@ -46,10 +53,7 @@ public class TestNewAddress {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-
 		page = SetupClass.setupClass();
-
-		// CreateDatabase.main(new String[0]);
 	}
 
 	// insert a new address for an existing customer, then the table of addresses of
@@ -59,9 +63,34 @@ public class TestNewAddress {
 	public void insertAddressCheckOnTable() throws IOException {
 
 		int numeroAddress = getNumeroAddressByNPC();
-		insertAddress();
+		insertAddressPost();
 		verificarTabela();
 		assertEquals(numeroAddress + 1, getNumeroAddressByNPC());
+	}
+
+	private void insertAddressPost() throws IOException {
+		HtmlPage reportPage;
+
+		try (final WebClient webClient = new WebClient(BrowserVersion.getDefault())) {
+			WebRequest req = new WebRequest(new java.net.URL(APPLICATION_URL + GET_CUSTOMER_PAGE_CONTROLLER),
+					HttpMethod.POST);
+
+			String formData = String.format("vat=%s&address=%s&door=%s&postalCode=%s&locality=%s", NPC, ADDRESS, DOOR,
+					POSTAL_CODE, LOCALITY);
+			req.setRequestBody(formData);
+
+			reportPage = (HtmlPage) webClient.getPage(req);
+		}
+
+		// verificar a pagina
+		assertTrue(reportPage.getTitleText().equals(TITLE_CUSTOMER_INFO));
+
+		String textReportPage = reportPage.asText();
+
+		// Verifica se adicionou o address certo
+		String expected_address = ADDRESS + '\t' + DOOR + '\t' + POSTAL_CODE + '\t' + LOCALITY;
+		assertTrue(textReportPage.contains(expected_address));
+
 	}
 
 	/**
@@ -74,7 +103,7 @@ public class TestNewAddress {
 
 		// Build a GET request
 		try (final WebClient webClient = new WebClient(BrowserVersion.getDefault())) {
-			java.net.URL url = new java.net.URL(APPLICATION_URL + "GetCustomerPageController");
+			java.net.URL url = new java.net.URL(APPLICATION_URL + GET_CUSTOMER_PAGE_CONTROLLER);
 			WebRequest requestSettings = new WebRequest(url, HttpMethod.GET);
 
 			// Set the request parameters
@@ -102,7 +131,7 @@ public class TestNewAddress {
 
 		// Build a GET request
 		try (final WebClient webClient = new WebClient(BrowserVersion.getDefault())) {
-			java.net.URL url = new java.net.URL(APPLICATION_URL + "GetCustomerPageController");
+			java.net.URL url = new java.net.URL(APPLICATION_URL + GET_CUSTOMER_PAGE_CONTROLLER);
 			WebRequest requestSettings = new WebRequest(url, HttpMethod.GET);
 
 			// Set the request parameters
@@ -127,12 +156,15 @@ public class TestNewAddress {
 	}
 
 	/**
-	 * Inserir um address num customer ja existente
+	 * Inserir um address num customer ja existente Sem verificacao se foi
+	 * adicionado com sucesso
 	 * 
+	 * @deprecated
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unused")
 	private void insertAddress() throws IOException {
-		HtmlAnchor addAddressToCustomerLink = page.getAnchorByHref("addAddressToCustomer.html");
+		HtmlAnchor addAddressToCustomerLink = page.getAnchorByHref(ADD_ADDRESS_TO_CUSTOMER_HTML);
 		HtmlPage nextPage = (HtmlPage) addAddressToCustomerLink.openLinkInNewWindow();
 
 		// Verifica o titulo ta pag
