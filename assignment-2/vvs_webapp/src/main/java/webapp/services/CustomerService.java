@@ -103,8 +103,12 @@ public enum CustomerService {
 		if (!isValidVAT (vat))
 			throw new ApplicationException ("Invalid VAT number: " + vat);
 		else try {
+			
 			CustomerRowDataGateway customer = new CustomerFinder().getCustomerByVATNumber(vat);
+			SaleService.INSTANCE.removeSalesOfCustomerVat(vat);
+			SaleService.INSTANCE.removeSalesDeliveryOfCustomerVat(vat);
 			customer.removeCustomer();
+			
 		} catch (PersistenceException e) {
 				throw new ApplicationException ("Customer with vat number " + vat + " doesn't exist.", e);
 		}

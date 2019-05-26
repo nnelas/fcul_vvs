@@ -1,6 +1,7 @@
 package vvs_dbsetup;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static vvs_dbsetup.Utils.DB_PASSWORD;
 import static vvs_dbsetup.Utils.DB_URL;
 import static vvs_dbsetup.Utils.DB_USERNAME;
@@ -127,17 +128,16 @@ public class TestsDBSetup {
 		final int VAT = 197672337;
 		final String NAME = "JOSE FARIA";
 		final int PHONE = 914276732;
-		
+
 		SaleService.INSTANCE.addSale(VAT);
-		SalesDTO salesOld = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
-		
+
 		CustomerService.INSTANCE.removeCustomer(VAT);
 		CustomerService.INSTANCE.addCustomer(VAT, NAME, PHONE);
-		
+
 		SalesDTO salesNew = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
-				
-		assertEquals(VAT, CustomerService.INSTANCE.getCustomerByVat(VAT).vat);
-		assertFalse(salesOld.sales.size() == salesNew.sales.size());
+
+		assertEquals(NAME, CustomerService.INSTANCE.getCustomerByVat(VAT).designation);
+		assertEquals(0, salesNew.sales.size());
 	}
 
 	/*
@@ -184,9 +184,9 @@ public class TestsDBSetup {
 	public void addSaleExistingVAT() throws ApplicationException {
 		final int VAT = 217173535;
 
-		SaleService.INSTANCE.addSale(VAT);
-
-		assertFalse(SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.size() > 0);
+		assertThrows(ApplicationException.class, () -> {
+			SaleService.INSTANCE.addSale(VAT);
+		});
 	}
 
 }
