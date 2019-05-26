@@ -128,5 +128,22 @@ public class AddressRowDataGateway{
 			throw new RecordNotFoundException ("Address does not exist", e);
 		}
 	}
+
+	/**
+	 * The remove address SQL statement
+	 */
+	private static final String REMOVE_CUSTOMER_BY_VAT = "delete from address " + "where id = ?";
+
+	public void remove() throws PersistenceException {
+		try (PreparedStatement statement = DataSource.INSTANCE.prepare(REMOVE_CUSTOMER_BY_VAT)) {
+			// set statement arguments
+			statement.setInt(1, id);
+			// execute SQL
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException("Internal remove address " + id + ".", e);
+		}
+
+	}
 	
 }

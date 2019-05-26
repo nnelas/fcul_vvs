@@ -211,7 +211,7 @@ public class CustomerRowDataGateway {
 	
 	
 	/**
-	 * The update customerPhone SQL statement
+	 * The remove address SQL statement
 	 */
 	private static final String	REMOVE_CUSTOMER_BY_VAT =
 			"delete from customer " +
@@ -220,11 +220,11 @@ public class CustomerRowDataGateway {
 	public void removeCustomer () throws PersistenceException {
 		try (PreparedStatement statement = DataSource.INSTANCE.prepare(REMOVE_CUSTOMER_BY_VAT)){
 			// set statement arguments
-			statement.setInt(1, vat);
+			statement.setInt(1, id);
 			// execute SQL
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new PersistenceException("Internal error updating customer " + id + ".", e);
+			throw new PersistenceException("Internal remove address " + id + ".", e);
 		}
 	}
 	
