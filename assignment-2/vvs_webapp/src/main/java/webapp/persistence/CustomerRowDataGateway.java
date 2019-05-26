@@ -142,6 +142,7 @@ public class CustomerRowDataGateway {
 			statement.setString(1, designation);
 			statement.setInt(2, phoneNumber);
 			// executes SQL
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException ("Internal error!", e);
@@ -215,7 +216,7 @@ public class CustomerRowDataGateway {
 	 */
 	private static final String	REMOVE_CUSTOMER_BY_VAT =
 			"delete from customer " +
-					   "where vatnumber = ?";
+					   "where id = ?";
 	
 	public void removeCustomer () throws PersistenceException {
 		try (PreparedStatement statement = DataSource.INSTANCE.prepare(REMOVE_CUSTOMER_BY_VAT)){

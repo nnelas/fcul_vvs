@@ -26,6 +26,7 @@ import com.ninja_squad.dbsetup.operation.Operation;
 
 import webapp.services.AddressesDTO;
 import webapp.services.ApplicationException;
+import webapp.services.CustomerDTO;
 import webapp.services.CustomerService;
 import webapp.services.SaleService;
 import webapp.services.SalesDTO;
@@ -132,12 +133,14 @@ public class TestsDBSetup {
 		SaleService.INSTANCE.addSale(VAT);
 
 		CustomerService.INSTANCE.removeCustomer(VAT);
+		
 		CustomerService.INSTANCE.addCustomer(VAT, NAME, PHONE);
 
-		SalesDTO salesNew = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
-
 		assertEquals(NAME, CustomerService.INSTANCE.getCustomerByVat(VAT).designation);
-		assertEquals(0, salesNew.sales.size());
+
+		assertEquals(0, SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size());
+		assertEquals(0, CustomerService.INSTANCE.getAllAddresses(VAT).addrs.size());
+		assertEquals(0, SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.size());
 	}
 
 	/*

@@ -126,6 +126,7 @@ public enum CustomerService {
 				CustomerRowDataGateway customer = new CustomerFinder().getCustomerByVATNumber(vat);
 				SaleService.INSTANCE.removeSalesOfCustomerVat(vat);
 				SaleService.INSTANCE.removeSalesDeliveryOfCustomerVat(vat);
+				CustomerService.INSTANCE.removeAddressesToCustomer(vat);
 				customer.removeCustomer();
 
 			} catch (PersistenceException e) {
