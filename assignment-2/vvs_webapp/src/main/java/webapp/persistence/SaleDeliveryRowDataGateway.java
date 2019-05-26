@@ -148,7 +148,7 @@ public class SaleDeliveryRowDataGateway {
 	}
 	
 	/**
-	 * The remove sale by id
+	 * The remove sale delivery by id
 	 */
 	private static final String	REMOVE_SALE_DELIVERY_BY_ID =
 			"delete from saledelivery " +
