@@ -154,7 +154,7 @@ public class SaleDeliveryRowDataGateway {
 			"delete from saledelivery " +
 					   "where id = ?";
 	
-	public void removeSaleDelivery () throws PersistenceException {
+	public void remove () throws PersistenceException {
 		try (PreparedStatement statement = DataSource.INSTANCE.prepare(REMOVE_SALE_DELIVERY_BY_ID)){
 			// set statement arguments
 			statement.setInt(1, id);

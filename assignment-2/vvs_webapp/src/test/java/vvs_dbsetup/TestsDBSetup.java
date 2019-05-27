@@ -26,7 +26,6 @@ import com.ninja_squad.dbsetup.operation.Operation;
 
 import webapp.services.AddressesDTO;
 import webapp.services.ApplicationException;
-import webapp.services.CustomerDTO;
 import webapp.services.CustomerService;
 import webapp.services.SaleService;
 import webapp.services.SalesDTO;
@@ -84,7 +83,7 @@ public class TestsDBSetup {
 		int initialCustomers = CustomerService.INSTANCE.getAllCustomers().customers.size();
 
 		assertEquals(2, initialCustomers);
-
+		
 		List<Integer> vats = CustomerService.INSTANCE.getAllCustomers().customers.stream()
 				.filter(customer -> customer.vat != VAT).map(customer -> customer.vat).collect(Collectors.toList());
 

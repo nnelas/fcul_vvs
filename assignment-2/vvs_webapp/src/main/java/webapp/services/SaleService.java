@@ -85,9 +85,9 @@ public enum SaleService {
 			try {
 				List<SaleRowDataGateway> lista = new SaleRowDataGateway().getAllSales(vat);
 				for (SaleRowDataGateway saleRowDataGateway : lista) {
-					saleRowDataGateway.removeSale();
+					saleRowDataGateway.remove();
 				}
-
+				
 			} catch (PersistenceException e) {
 				throw new ApplicationException("Customer with vat number " + vat + " not found.", e);
 			}
@@ -128,7 +128,7 @@ public enum SaleService {
 				List<SaleDeliveryRowDataGateway> deliveriesRowDataGateways = new SaleDeliveryRowDataGateway()
 						.getAllSaleDelivery(vat);
 				for (SaleDeliveryRowDataGateway deliveryRowDataGateway : deliveriesRowDataGateways) {
-					deliveryRowDataGateway.removeSaleDelivery();
+					deliveryRowDataGateway.remove();
 				}
 
 			} catch (PersistenceException e) {

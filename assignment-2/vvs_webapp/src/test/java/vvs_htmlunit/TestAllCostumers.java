@@ -49,7 +49,6 @@ public class TestAllCostumers {
 
 		page = SetupClass.setupClass();
 
-		// CreateDatabase.main(new String[0]);
 	}
 
 	@Test
@@ -74,7 +73,7 @@ public class TestAllCostumers {
 
 			String formData = String.format("vat=%s&designation=%s&phone=%s", vat, name, phone);
 			req.setRequestBody(formData);
-			
+
 			reportPage = (HtmlPage) webClient.getPage(req);
 		}
 
