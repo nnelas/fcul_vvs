@@ -39,12 +39,11 @@ public class TestInsertAndRemove {
 		page = SetupClass.setupClass();
 	}
 	
-	/**
-	 * Here we test two operations (insert & remove) in order to leave the database
-	 * in the original state
+	/*
+	 * c) create a new customer, them remove him, and check if the list of all
+	 * clients does not change;
 	 * 
-	 * @throws IOException
-	 */
+	 * */
 	@Test
 	public void insertAndRemoveClientTest() throws IOException {
 		

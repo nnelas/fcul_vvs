@@ -67,8 +67,10 @@ public class TestsDBSetup {
 		final int vat = 197672337;
 		final int newContact = 123456789;
 
+		//Actualiza o contacto do customer
 		CustomerService.INSTANCE.updateCustomerPhone(vat, newContact);
 
+		//Recupera o customer e valida que o contacto foi actualizado
 		assertEquals(newContact, CustomerService.INSTANCE.getCustomerByVat(vat).phoneNumber);
 	}
 
@@ -80,17 +82,18 @@ public class TestsDBSetup {
 	public void deleteButOne() throws ApplicationException {
 		final int VAT = 197672337;
 
-		int initialCustomers = CustomerService.INSTANCE.getAllCustomers().customers.size();
-
-		assertEquals(2, initialCustomers);
-		
+		//Recupera a listagem de todos os utilizadores que não tenho o VAT predefinido
 		List<Integer> vats = CustomerService.INSTANCE.getAllCustomers().customers.stream()
 				.filter(customer -> customer.vat != VAT).map(customer -> customer.vat).collect(Collectors.toList());
 
+		//Apaga todos esses utilizadores
 		for (Integer vat : vats)
 			CustomerService.INSTANCE.removeCustomer(vat);
 
+		//Recupera o utilizador com o VAT predefinido e valida o seu VAT
 		assertEquals(VAT, CustomerService.INSTANCE.getCustomerByVat(VAT).vat);
+		
+		//Valida que apenas existe um customer
 		assertEquals(1, CustomerService.INSTANCE.getAllCustomers().customers.size());
 	}
 
@@ -102,11 +105,19 @@ public class TestsDBSetup {
 	public void deleteACustomerAndCheckDeliveries() throws ApplicationException {
 		final int VAT = 197672337;
 
+		//Adiciona uma sale ao VAT
 		SaleService.INSTANCE.addSale(VAT);
 
+		//Recupera essa sale
 		SalesDTO sales = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
+		
+		//Recupera todos os endereços do customer
 		AddressesDTO addresses = CustomerService.INSTANCE.getAllAddresses(VAT);
+		
+		//Cria uma sale service com a sale e o address
 		SaleService.INSTANCE.addSaleDelivery(sales.sales.get(0).id, addresses.addrs.get(0).id);
+		
+		//Conta numero de deliveries
 		int numOfDeliveries = SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size();
 
 		// valido que existe uma entrega
@@ -120,7 +131,7 @@ public class TestsDBSetup {
 	}
 
 	/*
-	 * d) after deleting a certain costumer, it’s possible to add it back without
+	 * d) after deleting a certain customer, it’s possible to add it back without
 	 * lifting exceptions;
 	 */
 	@Test
@@ -129,17 +140,19 @@ public class TestsDBSetup {
 		final String NAME = "JOSE FARIA";
 		final int PHONE = 914276732;
 
-		SaleService.INSTANCE.addSale(VAT);
-
+		//Remove o customer com este VAT
 		CustomerService.INSTANCE.removeCustomer(VAT);
+
+		//Valida que o customer foi mesmo apagado
+		assertThrows(ApplicationException.class, () -> CustomerService.INSTANCE.getCustomerByVat(VAT));
 		
+		//Adiciona o mesmo customer
 		CustomerService.INSTANCE.addCustomer(VAT, NAME, PHONE);
 
+		//Valida que todos os dados foram bem inseridos
 		assertEquals(NAME, CustomerService.INSTANCE.getCustomerByVat(VAT).designation);
-
-		assertEquals(0, SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size());
-		assertEquals(0, CustomerService.INSTANCE.getAllAddresses(VAT).addrs.size());
-		assertEquals(0, SaleService.INSTANCE.getSaleByCustomerVat(VAT).sales.size());
+		assertEquals(VAT, CustomerService.INSTANCE.getCustomerByVat(VAT).vat);
+		assertEquals(PHONE, CustomerService.INSTANCE.getCustomerByVat(VAT).phoneNumber);
 	}
 
 	/*
@@ -149,18 +162,23 @@ public class TestsDBSetup {
 	public void addDeliveriesByOneTest() throws ApplicationException {
 		final int VAT = 197672337;
 
+		//Adiciona uma nova compra
 		SaleService.INSTANCE.addSale(VAT);
-
+		
+		//Recupera todas as compras de um customer
 		SalesDTO sales = SaleService.INSTANCE.getSaleByCustomerVat(VAT);
+		
+		//Recupera todos os endereços de um customer
 		AddressesDTO addresses = CustomerService.INSTANCE.getAllAddresses(VAT);
 
+		//Conta o número de encomendas antes de adicionar uma nova
 		int before = SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size();
 
+		//Adiciona uma nova encomenda
 		SaleService.INSTANCE.addSaleDelivery(sales.sales.get(0).id, addresses.addrs.get(0).id);
 
-		int after = SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size();
-
-		assertEquals(before + 1, after);
+		//Valida que o numero de encomendas aumentou 1
+		assertEquals(before + 1, SaleService.INSTANCE.getSalesDeliveryByVat(VAT).sales_delivery.size());
 	}
 
 	/*
@@ -186,6 +204,7 @@ public class TestsDBSetup {
 	public void addSaleExistingVAT() throws ApplicationException {
 		final int VAT = 217173535;
 
+		//Valida que adicionar uma compra com um VAT que não exita lança um erro
 		assertThrows(ApplicationException.class, () -> {
 			SaleService.INSTANCE.addSale(VAT);
 		});
