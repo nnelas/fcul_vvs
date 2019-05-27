@@ -58,61 +58,6 @@ public class TestIndex {
          assertTrue(inputs.size()==APPLICATION_NUMBER_USE_CASES);
 	}
 	
-	/*
-	 * c ) create a new customer, 
-	 * them remove him, and check if the list of all clients does not change;
-	 */
-	
-	@Test
-	public void insertAndRemoveClientTest() throws IOException {
-        final String NPC = "503183504";
-        final String DESIGNATION = "FCUL";
-        final String PHONE = "217500000";
-		
-		// get a specific link
-		HtmlAnchor addCustomerLink = page.getAnchorByHref("addCustomer.html");
-		// click on it
-		HtmlPage nextPage = (HtmlPage) addCustomerLink.openLinkInNewWindow();
-		// check if title is the one expected
-		assertEquals("Enter Name", nextPage.getTitleText());
-		
-		// get the page first form:
-		HtmlForm addCustomerForm = nextPage.getForms().get(0);
-		
-		// place data at form
-		HtmlInput vatInput = addCustomerForm.getInputByName("vat");
-		vatInput.setValueAttribute(NPC);
-		HtmlInput designationInput = addCustomerForm.getInputByName("designation");
-		designationInput.setValueAttribute(DESIGNATION);
-		HtmlInput phoneInput = addCustomerForm.getInputByName("phone");
-		phoneInput.setValueAttribute(PHONE);
-		// submit form
-		HtmlInput submit = addCustomerForm.getInputByName("submit");
-
-		// check if report page includes the proper values
-		HtmlPage reportPage = submit.click();
-		String textReportPage = reportPage.asText();
-		assertTrue(textReportPage.contains(NPC));
-		assertTrue(textReportPage.contains(DESIGNATION));
-		assertTrue(textReportPage.contains(PHONE));
-		
-		// at index, goto Remove case use and remove the previous client
-		HtmlAnchor removeCustomerLink = page.getAnchorByHref("RemoveCustomerPageController");
-		nextPage = (HtmlPage) removeCustomerLink.openLinkInNewWindow();
-		assertTrue(nextPage.asText().contains(NPC));
-		
-		HtmlForm removeCustomerForm = nextPage.getForms().get(0);
-		vatInput = removeCustomerForm.getInputByName("vat");
-		vatInput.setValueAttribute(NPC);
-		submit = removeCustomerForm.getInputByName("submit");
-		submit.click();
-		
-		// now check that the new client was erased
-		HtmlAnchor getCustomersLink = page.getAnchorByHref("GetAllCustomersPageController");
-		nextPage = (HtmlPage) getCustomersLink.openLinkInNewWindow();
-		assertFalse(nextPage.asText().contains(NPC));
-	}
-
 	// not testing, just to show how to access tables inside the HTML
 	@Test
 	public void tablesTest() throws MalformedURLException {
