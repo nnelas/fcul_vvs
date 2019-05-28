@@ -18,6 +18,13 @@ import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
+/**
+ * create a new customer, them remove him, and 
+ * check if the list of all clients does not change
+ * 
+ * Teste 1c
+ * 
+ */
 public class TestInsertAndRemove {
 
 	private static final String GET_ALL_CUSTOMERS_PAGE_CONTROLLER = "GetAllCustomersPageController";
@@ -39,11 +46,6 @@ public class TestInsertAndRemove {
 		page = SetupClass.setupClass();
 	}
 	
-	/*
-	 * c) create a new customer, them remove him, and check if the list of all
-	 * clients does not change;
-	 * 
-	 * */
 	@Test
 	public void insertAndRemoveClientTest() throws IOException {
 		

@@ -20,6 +20,15 @@ import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 import com.gargoylesoftware.htmlunit.util.NameValuePair;
 
+/**
+ *	d) create a new sale for an existing customer,
+ * insert a delivery for that sale and then show the sale delivery.
+ * Check that all intermediate pages have the expected information.
+ * 
+ * Teste 1d
+ * 
+ */
+
 public class TestNewSaleAndDelivery {
 
     private static HtmlPage page;
@@ -30,10 +39,6 @@ public class TestNewSaleAndDelivery {
 	}
 
     /*
-     * d) create a new sale for an existing customer,
-     * insert a delivery for that sale and then show the sale delivery.
-     * Check that all intermediate pages have the expected information.
-     *
      * Added id="addresses" on addSaleDelivery.jsp to obtain that table inside this method
      * Added id="deliveries" on ShowSalesDelivery.jsp to obtain that table inside this method
      * Added id="sales" on SalesInfo.jsp to obtain that table inside this method
